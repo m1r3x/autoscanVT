@@ -7,7 +7,7 @@ api_keys = [] #add your own keys(comma separated strings, recommended at least 2
 
 key_count = 0   #don't change this
 
-file_extensions = ["exe","doc","docx","zip","xml","zip","apk","pdf","txt","php","js","db","sql","png","dex","jpg"]
+blacklist = ["exe","doc","docx","zip","xml","zip","apk","pdf","txt","php","js","db","sql","png","dex","jpg","smali","sqlite","properties","ttf","core","action","sdk","webp","otf","version","dtd","text","style"]
 
 digits = "0123456789"
 
@@ -51,7 +51,7 @@ for line in text.split("\n"):
 
     try:
         y = pattern_domain.search(line)[0]
-        if y.split(".")[-1] not in file_extensions:
+        if y.split(".")[-1] not in blacklist and len(y.split(".")[-1]) > 1:
             address_list.append(y)
     except:
         pass
@@ -98,7 +98,7 @@ for i in malicious_list:
 
 print()
 
-print("Clean addresses:")
+print("Clean(or non existent) addresses:")
 for i in clean_list:
     print(i)
 
